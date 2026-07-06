@@ -1,0 +1,6 @@
+{
+  "name": "FutIA",
+  "description": "O melhor site de futebol do mundo — uma plataforma esportiva premium, ultra-rápida, com inteligência artificial integrada, estatísticas ao vivo, busca inteligente, notícias agregadas e chat de IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
