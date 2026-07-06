@@ -194,7 +194,9 @@ export async function getStandings(compId: string): Promise<LeagueStandings> {
 
     return {
       competitionId: compId.toLowerCase(),
-      season: data.season ? `${data.season.startDate.slice(0,4)}/${data.season.endDate.slice(2,4)}` : "2026/27",
+      season: (data.season && typeof data.season.startDate === "string" && typeof data.season.endDate === "string")
+        ? `${data.season.startDate.slice(0, 4)}/${data.season.endDate.slice(2, 4)}`
+        : "2026/27",
       rows
     };
   } catch (error: any) {
@@ -556,14 +558,14 @@ export async function getTeamDetail(teamId: string): Promise<Team> {
 
     return {
       id: String(data.id),
-      name: data.name,
-      shortName: data.shortName || data.tla || data.name.slice(0,3).toUpperCase(),
+      name: data.name || "Clube",
+      shortName: data.shortName || data.tla || (data.name ? data.name.slice(0, 3).toUpperCase() : "CLB"),
       logo: data.crest || "https://images.unsplash.com/photo-1540747737956-37872175267a?q=80&w=120&auto=format&fit=crop",
       country: data.area?.name || "Global",
       founded: data.founded || 1900,
       venue: data.venue || "Estádio Principal",
       coach: data.coach?.name || "Técnico Desconhecido",
-      description: `O ${data.name} é um prestigiado clube de futebol profissional, fundado em ${data.founded || 1900}, sediado em ${data.venue || "Estádio Principal"}.`,
+      description: `O ${data.name || "clube"} é um prestigiado clube de futebol profissional, fundado em ${data.founded || 1900}, sediado em ${data.venue || "Estádio Principal"}.`,
       roster
     } as unknown as Team;
   } catch (error: any) {
